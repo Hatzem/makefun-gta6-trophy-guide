@@ -3,105 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vice City Trophy Guide — GTA VI, all 55 trophies</title>
+<title>Vice City Trophy Guide — all 55 GTA VI trophies</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="masthead">
-  <div class="masthead-inner">
-    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
+  <div>
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; offline guide</p>
     <h1>Vice City Trophy Guide</h1>
-    <p class="tagline">Every trophy, its own-words guide and its source, plus a tracker, a roadmap to the platinum and the one missable to watch for. Works fully offline — no network, no account, nothing leaves your browser.</p>
-    <div class="progress-wrap">
-      <div class="progress-numbers"><span id="earned-count">0 / 55 earned</span><span id="earned-pct">0%</span></div>
-      <div class="progress-bar"><div id="earned-fill" class="progress-fill"></div></div>
-      <div class="grade-counts" id="grade-counts"></div>
-    </div>
+    <p class="lede">Every one of the 55 trophies, with a cited guide for each, a tracker that remembers your progress, a four-stage road to the platinum, and the one trophy you can miss. Everything runs from these files alone &mdash; no network needed.</p>
+  </div>
+  <div class="progress-card" aria-label="Progress">
+    <div class="progress-numbers"><span id="progressText">0 of 55 earned</span><span id="progressPct">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <p class="progress-grades" id="progressGrades"></p>
   </div>
 </header>
 
-<nav class="tabs" aria-label="Guide sections">
-  <button type="button" class="tab active" data-view="checklist">Checklist</button>
-  <button type="button" class="tab" data-view="roadmap">Roadmap</button>
-  <button type="button" class="tab" data-view="missables">Missables</button>
-  <button type="button" class="tab" data-view="sources">Sources</button>
+<nav class="views" aria-label="Views">
+  <button type="button" data-view="checklist" class="view-btn active">Checklist</button>
+  <button type="button" data-view="roadmap" class="view-btn">Roadmap to Platinum</button>
+  <button type="button" data-view="missables" class="view-btn">Missables</button>
+  <button type="button" data-view="sources" class="view-btn">Sources</button>
 </nav>
 
+<div class="toolbar" id="toolbar">
+  <label class="field">Search <input id="search" type="search" placeholder="Trophy name or keyword&hellip;" autocomplete="off"></label>
+  <label class="field">Grade
+    <select id="gradeFilter">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="field">Kind
+    <select id="kindFilter">
+      <option value="all">All kinds</option>
+      <option value="story">Story</option>
+      <option value="stranger">Strangers &amp; questlines</option>
+      <option value="activities">Activities</option>
+      <option value="collectibles">Collectibles</option>
+      <option value="crime">Crime &amp; robberies</option>
+      <option value="exploration">Exploration</option>
+      <option value="money">Money &amp; property</option>
+      <option value="completion">100% completion</option>
+      <option value="misc">Miscellaneous</option>
+      <option value="platinum">Platinum</option>
+    </select>
+  </label>
+  <label class="field">Progress
+    <select id="earnedFilter">
+      <option value="all">Show all</option>
+      <option value="earned">Earned only</option>
+      <option value="unearned">Not earned yet</option>
+      <option value="missable">Missable only</option>
+    </select>
+  </label>
+  <label class="check"><input id="spoilerToggle" type="checkbox"> Hide story spoilers</label>
+  <span class="spacer"></span>
+  <button id="exportBtn" type="button">Export progress</button>
+  <label class="import-btn">Import progress <input id="importFile" type="file" accept="application/json"></label>
+  <button id="resetBtn" type="button">Reset</button>
+</div>
+
 <main>
-  <section id="view-checklist" class="view active">
-    <div class="toolbar">
-      <input id="search" type="search" placeholder="Search a trophy by name or guide…" aria-label="Search trophies">
-      <label>Grade
-        <select id="filter-grade">
-          <option value="">All grades</option>
-          <option value="platinum">Platinum</option>
-          <option value="gold">Gold</option>
-          <option value="silver">Silver</option>
-          <option value="bronze">Bronze</option>
-        </select>
-      </label>
-      <label>Kind
-        <select id="filter-kind">
-          <option value="">All kinds</option>
-          <option value="story">Story</option>
-          <option value="missable">Missable</option>
-          <option value="collectibles">Collectibles</option>
-          <option value="activities">Activities</option>
-          <option value="side quests">Side quests</option>
-          <option value="crime">Crime</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-      <label>Progress
-        <select id="filter-earned">
-          <option value="">All</option>
-          <option value="earned">Earned</option>
-          <option value="unearned">Not earned</option>
-        </select>
-      </label>
-      <label class="spoiler-label"><input id="spoiler-toggle" type="checkbox"> Hide story spoilers</label>
-      <span class="tool-spacer"></span>
-      <button type="button" id="btn-export">Export progress</button>
-      <button type="button" id="btn-import">Import progress</button>
-      <input id="file-import" type="file" accept="application/json,.json" hidden>
-      <button type="button" id="btn-reset">Reset</button>
-    </div>
-    <p class="result-line" id="result-line"></p>
-    <div class="card-grid" id="card-grid"></div>
-    <p class="empty-note" id="empty-note" hidden>No trophies match these filters. Clear the search or pick a different filter.</p>
-  </section>
-
-  <section id="view-roadmap" class="view">
-    <h2>Roadmap to the platinum</h2>
-    <p class="section-intro">About 200 hours, one playthrough, no mission replay. Difficulty 4/10. Work the stages in order — most of stage 2 happens naturally while you play stage 1, and stage 4 is just whatever is left.</p>
-    <div id="roadmap-stages"></div>
-    <div class="checklist-box">
-      <h3>100% Completion Checklist — the thresholds</h3>
-      <p>Unlocks after the story under Progress &gt; Stats &gt; 100% Completion. It is closer to 60% of the game's true content, not everything. Nothing on it is missable.</p>
-      <ul class="checklist-items" id="checklist-items"></ul>
+  <section id="view-checklist" class="view">
+    <p class="hint">Tick a trophy to mark it earned &mdash; your ticks are saved in this browser. Click any card to read its guide and its source.</p>
+    <div class="layout">
+      <div class="cards" id="cards"></div>
+      <aside class="detail" id="detail" aria-live="polite"></aside>
     </div>
   </section>
 
-  <section id="view-missables" class="view">
-    <h2>Missables</h2>
-    <p class="section-intro">Good news first: there is only one trophy that can be missed, and everything else stays available in free-roam after the story.</p>
-    <div id="missable-list"></div>
-    <div class="save-box">
-      <h3>Save-slot habit that costs nothing</h3>
-      <p>The game gives you 15 manual save slots plus 1 autosave, and there is no mission replay. Keep a save at the start and the end of each chapter (10 saves), then rotate the remaining 5 for free-roam cleanup. Cheats disable trophies and saving, so leave them off for a trophy run.</p>
-    </div>
+  <section id="view-roadmap" class="view" hidden>
+    <p class="hint">Four stages, one playthrough, about 200 hours. Do the missable meditation in Stage 1 &mdash; everything else can wait until after the story.</p>
+    <div id="roadmap"></div>
   </section>
 
-  <section id="view-sources" class="view">
-    <h2>Sources</h2>
-    <p class="section-intro">Every guide above names its source beside it. These are the guides this entry drew on — named here and next to each trophy, shown as plain text. No guide text was copied; every guide here is written in its own words for this entry.</p>
-    <ul class="source-list" id="source-list"></ul>
+  <section id="view-missables" class="view" hidden>
+    <p class="hint">Only one trophy can be missed, and even that one is not confirmed to be required. Everything else stays available in free-roam after the story.</p>
+    <div id="missables"></div>
+  </section>
+
+  <section id="view-sources" class="view" hidden>
+    <p class="hint">Every guide in this app names where its facts come from. The source addresses below are plain text &mdash; the app fetches nothing, so open them yourself if you want to check a claim.</p>
+    <div id="sources"></div>
   </section>
 </main>
 
 <footer>
-  <p>Vice City Trophy Guide — an unofficial, offline fan guide. Grand Theft Auto, GTA and Vice City are trademarks of Take-Two Interactive; no Rockstar artwork, logo or game imagery is used here. Trophy names and descriptions are shown as PlayStation publishes them; all guide text is original to this entry.</p>
+  <p>Official trophy names, descriptions and grades as PlayStation lists them. Guides are written for this app and cite their sources. Keep a manual save at the start and end of each chapter: missions cannot be replayed, and cheats disable trophies and saving.</p>
 </footer>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
