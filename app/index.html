@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Trophy Guide — GTA VI, all 55 trophies</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; offline guide &amp; tracker</p>
+    <h1>Vice City Trophy Guide</h1>
+    <p class="lede">Every one of the 55 official trophies — name, description and grade as PlayStation lists them — with a guide in our own words and its source, a roadmap to the platinum, and a checklist that saves your progress in this browser. No account, no network, no ads.</p>
+    <div class="progress-wrap" role="status" aria-label="Trophy progress">
+      <div class="progress-line"><span id="progress-text">0 of 55 earned</span><span id="progress-pct">0%</span></div>
+      <div class="progress-bar"><div id="progress-fill"></div></div>
+    </div>
+    <div class="toolbar">
+      <button id="export-btn" type="button">Export progress</button>
+      <label class="import-btn">Import progress<input id="import-input" type="file" accept="application/json,.json"></label>
+      <button id="reset-btn" type="button">Reset progress</button>
+      <label class="spoiler-toggle"><input id="spoiler-check" type="checkbox"> Hide story spoilers</label>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Guide sections">
+  <button type="button" data-view="checklist" class="tab active">Checklist</button>
+  <button type="button" data-view="roadmap" class="tab">Roadmap to platinum</button>
+  <button type="button" data-view="missables" class="tab">Missables</button>
+  <button type="button" data-view="sources" class="tab">Sources</button>
+</nav>
+<main>
+  <section id="view-checklist" class="view active" aria-label="Trophy checklist">
+    <div class="filters">
+      <input id="search" type="search" placeholder="Search a trophy, mission or keyword…" aria-label="Search trophies">
+      <label>Grade
+        <select id="grade-filter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label>Show
+        <select id="earned-filter">
+          <option value="all">All trophies</option>
+          <option value="unearned">Unearned only</option>
+          <option value="earned">Earned only</option>
+        </select>
+      </label>
+    </div>
+    <div class="kind-filters" role="group" aria-label="Filter by kind">
+      <button type="button" data-kind="all" class="kind active">All kinds</button>
+      <button type="button" data-kind="story" class="kind">Story</button>
+      <button type="button" data-kind="missable" class="kind">Missable</button>
+      <button type="button" data-kind="collectible" class="kind">Collectibles</button>
+      <button type="button" data-kind="activity" class="kind">Activities</button>
+      <button type="button" data-kind="side" class="kind">Side quests</button>
+      <button type="button" data-kind="crime" class="kind">Crime</button>
+      <button type="button" data-kind="other" class="kind">Other</button>
+    </div>
+    <p id="result-count" class="result-count"></p>
+    <div id="trophy-list" class="trophy-list"></div>
+    <p id="empty-state" class="empty-state" hidden>No trophies match these filters. Clear the search or pick another kind.</p>
+  </section>
+  <section id="view-roadmap" class="view" aria-label="Roadmap to the platinum">
+    <h2>Roadmap to the platinum</h2>
+    <p class="section-intro">About 200 hours, one playthrough, no mission replay and no difficulty setting. Cheats disable trophies and saving, so leave them off. Keep a save at the start and end of each chapter — there are 15 manual save slots — because there is no mission replay.</p>
+    <div id="roadmap-stages"></div>
+    <div class="roadmap-box">
+      <h3>The 100% Completion Checklist</h3>
+      <p>It opens after the story at Progress, then Stats, then 100% Completion — progress made during the story already counts. The bar is lenient, closer to 60% true completion: any 100 optional missions, any 70 of the 80 challenges, 300 of the 397 stunts, 200 of the 277 vehicles scanned, 100 of the 255 animals studied, plus all robberies, underwater discoveries, shooting ranges, drone races and Bret&rsquo;s quests. Nothing on the checklist is missable.</p>
+    </div>
+  </section>
+  <section id="view-missables" class="view" aria-label="Missable trophies">
+    <h2>Missables</h2>
+    <p class="section-intro">Only one trophy in the whole list is potentially missable. Everything else — story trophies included — can still be earned after the story in free-roam.</p>
+    <div id="missable-list" class="trophy-list"></div>
+    <div class="roadmap-box">
+      <h3>Nothing else can be missed</h3>
+      <p>Optional missions do disappear after a while and some quest givers go temporarily unavailable, but every trophy-related character comes back later, and all trophy-related questlines stay available after the story. A few magazine collectibles sit in story buildings that close, but they also spawn elsewhere and are not needed for any trophy. So the only thing to watch for is the Chapter 1 meditation above.</p>
+    </div>
+  </section>
+  <section id="view-sources" class="view" aria-label="Sources">
+    <h2>Sources &amp; method</h2>
+    <p class="section-intro">Trophy names, descriptions and grades are shown exactly as PlayStation publishes them. Every guide on this page is written in our own words for this guide — never copied — and each one names the guide it was drawn from, so a reader can check every fact. Where a method is still unconfirmed, the guide says so instead of inventing a step.</p>
+    <ul id="source-list" class="source-list"></ul>
+    <p class="section-intro">This guide works fully offline: it loads no file from outside its own folder and makes no network request. It shows no Rockstar logo, box art or game screenshot.</p>
+  </section>
+</main>
+<footer>
+  <p>Data as of launch week, 19 November 2026. Trophy counts in the tracker are the ones PlayStation shows. Guides were written from the sources listed above; methods marked unconfirmed are still being confirmed by those guides.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
